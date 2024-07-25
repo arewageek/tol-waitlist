@@ -4,6 +4,7 @@ import React, { SyntheticEvent, useEffect, useState } from 'react'
 import { Input } from '../ui/input'
 import ShinyButton from '../magicui/shiny-button'
 import { createAccount } from '@/actions/waitlist.actions'
+import Modal from '../Modal'
 
 type WaitlistFormData = {
     name: string,
@@ -13,10 +14,14 @@ type WaitlistFormData = {
     wallet: string
 }
 
+type Status = {
+    title: string, content: string, type: "success" | "error"
+}
+
 // const WaitlistForm = ({ showModal }: { showModal: (state: boolean) => void }) => {
 const WaitlistForm = () => {
     const [data, setData] = useState<WaitlistFormData>({ name: '', email: '', twitter: '', telegram: '', wallet: '' })
-    const [status, setStatus] = useState<"success" | "error" | "">("")
+    const [status, setStatus] = useState<Status | undefined>()
 
     const updateInput = ({ field, val }: { field: string, val: string }) => {
         setData((prev) => ({ ...prev, [field]: val }))
@@ -29,8 +34,20 @@ const WaitlistForm = () => {
         const makeMyAccount = await createAccount(data)
         console.log(makeMyAccount)
 
-        setStatus(() => makeMyAccount == "success" ? makeMyAccount : "error")
+        setStatus(() => makeMyAccount == "success" ?
+            {
+                title: "Waitlist Submited",
+                content: "You have successfully joined our waitlist",
+                type: 'success'
+            } :
+            {
+                title: "Waitlist Submission Failed",
+                content: "An error occurred while adding you to our waitlist",
+                type: "error"
+            })
     }
+
+    // useEffect(() => )
 
     return (
         <>
@@ -46,9 +63,10 @@ const WaitlistForm = () => {
 
                 <div className="">
                     <ShinyButton type="submit" text="Continue" className="w-full  py-5 rounded-xl" />
-
                 </div>
             </form>
+
+            {status && <Modal title={status.title} content={status.content} isModalOpen={!!status} closeModal={() => setStatus(undefined)} />}
         </>
     )
 }

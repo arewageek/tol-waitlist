@@ -23,9 +23,9 @@ export async function createAccount(
     await connectMongoDB();
     const { name, email, telegram, twitter, wallet, referredBy } = data;
 
-    console.log({ data });
+    // console.log({ data });
 
-    const waitlist = await new Waitlist({
+    await Waitlist.create({
       name,
       email,
       telegram,
@@ -34,8 +34,6 @@ export async function createAccount(
       referredBy: referredBy || "admin",
       referralCode: crypto.randomUUID(),
     });
-
-    const registered = await waitlist.save();
 
     return "success";
   } catch (e) {
