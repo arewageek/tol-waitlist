@@ -11,8 +11,8 @@ import {
 } from "@/components/ui/dialog"
 import { ReactNode, useEffect } from "react";
 import { Button } from "./ui/button";
-
 import confetti from "canvas-confetti";
+
 // import ShineBorder from "./magicui/shine-border";
 
 export interface ModalProps {
