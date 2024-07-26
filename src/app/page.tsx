@@ -42,13 +42,12 @@ export default function Home() {
       </div> */}
 
       <div className="min-h-screen w-full py-20">
-        {/* <Meteors number={30} /> */}
-        <div className="flex items-center justify-center w-full lg:px-12 py-10 h-full flex-col">
+        <div className="flex items-center justify-center w-full lg:px-12 py-5 h-full flex-col">
 
           <div className="w-full p-2 lg:px-[30px] lg:w-2/3 flex flex-col gap-y-4 items-center">
 
             <ShineBorder
-              className="relative flex py-20 h-auto w-full overflow-y-auto border-transparent flex-col items-center justify-center overflow-hidden rounded-lg border bg-black md:shadow-xl gap-y-4"
+              className="relative flex py-8 h-auto w-full overflow-y-auto border-transparent flex-col items-center justify-center overflow-hidden rounded-lg border bg-black md:shadow-xl gap-y-4"
               color={["#A07CFE", "#FE8FB5", "#FFBE7B"]}
             >
               <div className="rounded-full p-3 bg-[#181818] text-gray-300 cursorpoin">
@@ -56,7 +55,7 @@ export default function Home() {
               </div>
 
               <div className="w-full text-gray-300 text-center">
-                <p className="text-sm font-semibold text-white/70">
+                <p className="text-sm font-semibold text-white/70 pb-4">
                   The Open Lab
                 </p>
                 <AnimatedGradientText className="bg-transparent rounded-none">
@@ -65,7 +64,7 @@ export default function Home() {
                       `md:text-7xl text-5xl font-bold text-white inline animate-gradient bg-gradient-to-r from-[#ffaa40] via-[#9c40ff] to-[#ffaa40] bg-[length:var(--bg-size)_100%] bg-clip-text text-transparent`,
                     )}
                   >
-                    Join the waitlist
+                    Join our waitlist
                   </h2>
                 </AnimatedGradientText>
               </div>

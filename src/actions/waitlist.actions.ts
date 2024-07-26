@@ -16,16 +16,19 @@ export type Account = {
   id?: string;
 };
 
-export async function createAccount(
-  data: Account
-): Promise<"success" | "unknownError"> {
+export type Response = {
+  status: string;
+  id?: string;
+};
+
+export async function createAccount(data: Account): Promise<Response> {
   try {
     await connectMongoDB();
     const { name, email, telegram, twitter, wallet, referredBy } = data;
 
     // console.log({ data });
 
-    await Waitlist.create({
+    const waitlist = new Waitlist({
       name,
       email,
       telegram,
@@ -35,9 +38,18 @@ export async function createAccount(
       referralCode: crypto.randomUUID(),
     });
 
-    return "success";
+    const waitlistId = await waitlist.save();
+
+    const response = {
+      status: "success",
+      id: waitlistId._id,
+    };
+
+    console.log(response, waitlistId);
+
+    return response;
   } catch (e) {
     console.log(e);
-    return "unknownError";
+    return { status: "unknownError" };
   }
 }

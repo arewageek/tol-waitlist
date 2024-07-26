@@ -6,7 +6,7 @@ const waitlistSchema = new Schema(
     email: { type: String, required: true },
     telegram: { type: String, required: true },
     twitter: { type: String, required: true },
-    wallet: { type: String, required: true },
+    wallet: { type: String, required: false },
     referredBy: { type: String, required: true },
     referralCode: { type: String, require: true },
     score: { type: Number, required: false, default: 0 },
