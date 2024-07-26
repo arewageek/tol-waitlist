@@ -48,7 +48,7 @@ export default function Home() {
 
             <ShineBorder
               className="relative flex py-8 h-auto w-full overflow-y-auto border-transparent flex-col items-center justify-center overflow-hidden rounded-lg border bg-black md:shadow-xl gap-y-4"
-              color={["#A07CFE", "#FE8FB5", "#FFBE7B"]}
+              color={["#66B2FF", "#3366CC", "#00188F"]}
             >
               <div className="rounded-full p-3 bg-[#181818] text-gray-300 cursorpoin">
                 <Zap height={30} width={30} />

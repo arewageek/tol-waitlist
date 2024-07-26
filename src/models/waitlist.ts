@@ -9,7 +9,7 @@ const waitlistSchema = new Schema(
     wallet: { type: String, required: false },
     referredBy: { type: String, required: true },
     referralCode: { type: String, require: true },
-    score: { type: Number, required: false, default: 0 },
+    score: { type: Number, required: false, default: 5000 },
   },
   { timestamps: true }
 );
