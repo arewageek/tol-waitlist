@@ -34,12 +34,13 @@ export async function allTasks(): Promise<(typeof Task)[] | "unknownError"> {
   }
 }
 
-export async function completeTask({
-  id,
-}): Promise<"complete" | "unknownError"> {
-  try {
-  } catch (error) {
-    console.log(error);
-    return "unknownError";
-  }
-}
+// export async function completeTask({
+//   id,
+// }: {id: string}): Promise<"complete" | "unknownError"> {
+//   try {
+//     const TaskComplation = await
+//   } catch (error) {
+//     console.log(error);
+//     return "unknownError";
+//   }
+// }
