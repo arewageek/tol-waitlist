@@ -2,7 +2,7 @@
 
 import { connectMongoDB } from "@/lib/db";
 import TaskCompletion from "@/models/taskCompletion";
-import Task from "@/models/tasks";
+import Task, { TaskInterface } from "@/models/tasks";
 import Waitlist from "@/models/waitlist";
 
 export interface TaskDetails {
@@ -32,7 +32,7 @@ export async function createTask(
   }
 }
 
-export async function allTasks(): Promise<(typeof Task)[] | "unknownError"> {
+export async function allTasks(): Promise<TaskInterface[] | "unknownError"> {
   try {
     connectMongoDB();
     const tasks = Task.find();

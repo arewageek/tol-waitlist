@@ -2,6 +2,7 @@
 
 import { allCompletedTasks, allTasks, completeTask } from '@/actions/task.actions'
 import { getBalance } from '@/actions/waitlist.actions'
+import { TaskInterface } from '@/models/tasks'
 import { useUserStore } from '@/store/user'
 import React, { useEffect, useState } from 'react'
 
@@ -22,7 +23,7 @@ const useFetchUserData = ({ id }: { id: string }) => {
     }
 
     const fetchTasks = async () => {
-        const tsks = await allTasks()
+        const tsks: TaskInterface[] | "unknownError" = await allTasks()
 
         if (tsks != "unknownError") {
             setTasks(tsks)

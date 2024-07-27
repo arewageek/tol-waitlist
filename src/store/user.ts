@@ -8,11 +8,11 @@ type UserStore = {
   balance: number;
   tasks: TaskInterface[] | [];
   completedTasks: TasksCompletionInterface[] | [];
-  filteredTasks: (typeof Task)[];
+  filteredTasks: TaskInterface[];
   userId: string;
   setId: (id: string) => void;
   setBalance: (bal: number) => void;
-  setTasks: (tsks: (typeof Task)[]) => void;
+  setTasks: (tsks: TaskInterface[]) => void;
   setCompleteTasks: (tsks: TasksCompletionInterface[]) => void;
   setFilteredTasks: (tsk: TaskInterface[]) => void;
 };
