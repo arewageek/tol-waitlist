@@ -1,17 +1,17 @@
+import { connectMongoDB } from "@/lib/db";
 import Task from "@/models/tasks";
 import { NextApiRequest } from "next";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(request: Request) {
   try {
-    const { name, description, url, reward } = await request.json();
-
+    connectMongoDB();
     const task = new Task({
-      name,
-      description,
-      url,
-      valid: Date.now() + 3000,
-      reward,
+      name: "Follow us on Telegram",
+      description: "",
+      url: "#",
+      valid: true,
+      reward: 500,
     });
 
     task.save();

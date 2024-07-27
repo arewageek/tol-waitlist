@@ -53,3 +53,16 @@ export async function createAccount(data: Account): Promise<Response> {
     return { status: "unknownError" };
   }
 }
+
+export async function getBalance(id: string): Promise<number> {
+  try {
+    const user = await Waitlist.findById(id);
+    if (!user) return 0;
+    const balance = user.score;
+
+    return balance;
+  } catch (error) {
+    console.log(error);
+    return 0;
+  }
+}
