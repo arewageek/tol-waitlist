@@ -66,3 +66,27 @@ export async function getBalance(id: string): Promise<number> {
     return 0;
   }
 }
+
+export async function joinWaitlistWithEmail(
+  email: string
+): Promise<"success" | "unknownError"> {
+  connectMongoDB();
+  try {
+    const waitlist = new Waitlist({
+      email,
+      referredBy: "admin",
+      referralCode: crypto.randomUUID(),
+      score: 5000,
+    });
+
+    const waitlistId = await waitlist.save();
+
+    const id = await waitlistId._id.toLocaleString();
+
+    console.log(waitlistId);
+    return id;
+  } catch (error) {
+    console.log(error);
+    return "unknownError";
+  }
+}

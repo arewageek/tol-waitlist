@@ -2,12 +2,12 @@ import mongoose, { Schema } from "mongoose";
 
 const waitlistSchema = new Schema(
   {
-    name: { type: String, required: true },
+    name: { type: String, required: false },
     email: { type: String, required: true },
-    telegram: { type: String, required: true },
-    twitter: { type: String, required: true },
+    telegram: { type: String, required: false },
+    twitter: { type: String, required: false },
     wallet: { type: String, required: false },
-    referredBy: { type: String, required: true },
+    referredBy: { type: String, required: true, default: "admin" },
     referralCode: { type: String, require: true },
     score: { type: Number, required: false, default: 5000 },
   },

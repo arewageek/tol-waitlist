@@ -6,16 +6,18 @@ import { toast } from 'react-toastify'
 import { Rocket } from 'lucide-react'
 import { useUserStore } from '@/store/user'
 import TaskCompletion, { TasksCompletionInterface } from '@/models/taskCompletion'
+import { url } from 'inspector'
 
 export type WLTask = {
     name: string,
     description?: string,
     reward: number,
-    id: string
-    uid?: string
+    id: string,
+    uid?: string,
+    url: string
 }
 
-const WLTasks = ({ name, description, reward, id }: WLTask) => {
+const WLTasks = ({ name, description, reward, id, url }: WLTask) => {
     const [completion, setCompletion] = useState<boolean>()
     const [isLoading, setIsLoading] = useState<boolean>()
 
@@ -47,7 +49,8 @@ const WLTasks = ({ name, description, reward, id }: WLTask) => {
             setTimeout(() => setIsLoading(false), 1000)
         }
         else {
-            setTimeout(() => setCompletion(true), 4000)
+            setTimeout(() => setCompletion(true), 2000)
+            window.open(url)
         }
 
 
