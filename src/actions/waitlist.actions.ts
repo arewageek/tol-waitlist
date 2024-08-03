@@ -67,13 +67,10 @@ export async function getBalance(id: string): Promise<number> {
   }
 }
 
-export async function joinWaitlistWithEmail(
-  email: string
-): Promise<
-  | { status: "success"; id: string }
-  | { id: null; status: "unknownError" }
-  | { id: string; status: "alreadyOnWaitlist" }
-> {
+export async function joinWaitlistWithEmail(email: string): Promise<{
+  status: "success" | "unknownError" | "alreadyOnWaitlist";
+  id: string | undefined;
+}> {
   connectMongoDB();
 
   try {

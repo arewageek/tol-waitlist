@@ -3,7 +3,7 @@
 import React, { SyntheticEvent, useState } from 'react'
 import { Input } from '../ui/input'
 import { Button } from '../ui/button'
-import { clearWaitlist, joinWaitlistWithEmail } from '@/actions/waitlist.actions'
+import { joinWaitlistWithEmail } from '@/actions/waitlist.actions'
 import { toast } from 'react-toastify'
 import Modal from '../Modal'
 
