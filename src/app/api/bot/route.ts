@@ -14,6 +14,7 @@ let waitlistKeyboard = new InlineKeyboard().webApp(
 
 async function handler() {
   bot.command("start", async (ctx) => {
+    console.log("inertia");
     if (ctx.from?.id) {
       connectMongoDB();
       const isRegistered = await Waitlist.findOne({ tgId: ctx.from?.id });
@@ -47,9 +48,14 @@ async function handler() {
         {
           caption:
             "Welcome onboard chief. Are you ready for what's coming? Join our waitlist using the link below",
-          reply_markup: waitlistKeyboard,
+          reply_markup: new InlineKeyboard().webApp(
+            "Join Waitlist 🚀🚀",
+            `https://tol-waitlist.vercel.app/tgid/${ctx.from?.id}`
+          ),
         }
       );
+
+      console.log(`https://tol-waitlist.vercel.app/tgid/${ctx.from?.id}`);
     }
 
     // console.log({ user: ctx });

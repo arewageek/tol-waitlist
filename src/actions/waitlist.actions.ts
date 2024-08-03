@@ -67,20 +67,29 @@ export async function getBalance(id: string): Promise<number> {
   }
 }
 
-export async function joinWaitlistWithEmail(email: string): Promise<{
+export async function joinWaitlistWithEmail({
+  email,
+  telegramId,
+}: {
+  email: string;
+  telegramId?: string;
+}): Promise<{
   status: "success" | "unknownError" | "alreadyOnWaitlist";
   id: string | undefined;
 }> {
-  connectMongoDB();
-
   try {
+    connectMongoDB();
+
+    // verify user account by email
     const wl = await Waitlist.findOne({ email });
-    console.log({ wl });
     // console.log({ wl });
-    if (wl) {
-      console.log("exist");
-      // return "unknownError";
-      return { id: wl.id, status: "alreadyOnWaitlist" };
+    // console.log({ wl });
+    if (wl) return { id: wl.id, status: "alreadyOnWaitlist" };
+
+    // verify user account by telegram id or username
+    if (telegramId) {
+      const wlById = await Waitlist.findOne({ tgId: telegramId! });
+      if (wlById) return { id: wlById.id, status: "alreadyOnWaitlist" };
     }
 
     const waitlist = new Waitlist({

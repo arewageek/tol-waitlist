@@ -10,6 +10,10 @@ type UserStore = {
   completedTasks: TasksCompletionInterface[] | [];
   filteredTasks: TaskInterface[];
   userId: string;
+  tgId: string;
+  tgUsername: string;
+  setTgUsername: (username: string) => void;
+  setTgId: (id: string) => void;
   setId: (id: string) => void;
   setBalance: (bal: number) => void;
   setTasks: (tsks: TaskInterface[]) => void;
@@ -23,6 +27,10 @@ export const useUserStore = create<UserStore>((set, get) => ({
   tasks: [],
   completedTasks: [],
   filteredTasks: [],
+  tgId: "",
+  tgUsername: "",
+  setTgUsername: (username) => set({ tgUsername: username }),
+  setTgId: (id) => set({ tgId: id }),
   setId: (id) => {
     set({ userId: id });
   },

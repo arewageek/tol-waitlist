@@ -6,14 +6,17 @@ import { Button } from '../ui/button'
 import { joinWaitlistWithEmail } from '@/actions/waitlist.actions'
 import { toast } from 'react-toastify'
 import Modal from '../Modal'
+import { useUserStore } from '@/store/user'
 
 type Status = {
     title: string, content: string, type: "success" | "error" | "alreadyOnWaitlist", id?: string
 }
 
-const WaitlistForm2 = () => {
+const WaitlistForm2 = ({ tgId }: { tgId?: string }) => {
     const [email, setEmail] = useState<string>('')
     const [status, setStatus] = useState<Status | undefined>()
+
+    // const { tgId } = useUserStore()
 
     const handleSubmit = (e: SyntheticEvent) => {
         e.preventDefault()
@@ -21,7 +24,9 @@ const WaitlistForm2 = () => {
         try {
             const joinWL = async () => {
 
-                const joinWaitlist = await joinWaitlistWithEmail(email)
+                const id = tgId ? tgId : ''
+
+                const joinWaitlist = await joinWaitlistWithEmail({ email, telegramId: id })
 
                 if (joinWaitlist.status == "unknownError") {
                     toast.error("Could not join waitlist")
