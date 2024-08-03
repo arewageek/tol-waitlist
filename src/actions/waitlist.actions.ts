@@ -69,9 +69,23 @@ export async function getBalance(id: string): Promise<number> {
 
 export async function joinWaitlistWithEmail(
   email: string
-): Promise<"success" | "unknownError"> {
+): Promise<
+  | { status: "success"; id: string }
+  | { id: null; status: "unknownError" }
+  | { id: string; status: "alreadyOnWaitlist" }
+> {
   connectMongoDB();
+
   try {
+    const wl = await Waitlist.findOne({ email });
+    console.log({ wl });
+    // console.log({ wl });
+    if (wl) {
+      console.log("exist");
+      // return "unknownError";
+      return { id: wl.id, status: "alreadyOnWaitlist" };
+    }
+
     const waitlist = new Waitlist({
       email,
       referredBy: "admin",
@@ -84,9 +98,13 @@ export async function joinWaitlistWithEmail(
     const id = await waitlistId._id.toLocaleString();
 
     console.log(waitlistId);
-    return id;
+    return { id, status: "success" };
   } catch (error) {
     console.log(error);
-    return "unknownError";
+    return { id: undefined, status: "unknownError" };
   }
 }
+
+// export async function clearWaitlist() {
+//   await Waitlist.deleteMany();
+// }

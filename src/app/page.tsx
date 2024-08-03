@@ -20,7 +20,7 @@ export default function Home() {
 
           <div className="w-full p-2 lg:px-[140px] lg:w-1/2 flex flex-col gap-y-10 items-center">
 
-            <h2 className="text-4xl font-bold text-center">
+            <h2 className="text-4xl font-bold text-center font-[montserrat]">
               Start connecting with web3 Builders today!
             </h2>
 

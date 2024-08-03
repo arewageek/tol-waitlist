@@ -10,7 +10,6 @@ import {
     DialogTrigger,
 } from "@/components/ui/dialog"
 import { ReactNode, useEffect } from "react";
-import { Button } from "./ui/button";
 import confetti from "canvas-confetti";
 
 // import ShineBorder from "./magicui/shine-border";
@@ -21,11 +20,13 @@ export interface ModalProps {
     children?: ReactNode,
     closeModal: () => void,
     isModalOpen: boolean,
-    redirectUrl?: string
-    status: "success" | "error"
+    redirectUrl?: string,
+    status: "success" | "error" | "alreadyOnWaitlist",
+    doRedirect?: boolean
+    id?: string
 }
 
-const Modal = ({ title, content, closeModal, isModalOpen, children, redirectUrl, status }: ModalProps) => {
+const Modal = ({ title, content, closeModal, isModalOpen, children, redirectUrl, status, doRedirect, id }: ModalProps) => {
 
     useEffect(() => {
 
@@ -55,11 +56,15 @@ const Modal = ({ title, content, closeModal, isModalOpen, children, redirectUrl,
             requestAnimationFrame(frame);
         };
 
-        status == 'success' && frame();
+        if (doRedirect == true) {
+            status == 'success' && frame();
+        }
     }, [])
 
     useEffect(() => {
-        redirectUrl != '' && setTimeout(() => window.location.href = redirectUrl!, 2000)
+        if (id) {
+            redirectUrl != '' && setTimeout(() => window.location.href = `/waitlist/${id}`, 2000)
+        }
     }, [])
 
     return (

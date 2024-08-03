@@ -31,7 +31,7 @@ const page = async ({ params }: { params: { id: string } }) => {
     return (
         <AppProvider id={params.id}>
             <UpdateId id={params.id} />
-            <main className="flex min-h-screen flex-col items-center justify-between bg-gradient-to-b from-[#181818] to-black max-w-screen p-0">
+            <main className="flex min-h-screen flex-col items-center justify-between bg-gradient-to-b  max-w-screen p-0">
 
                 <div className="min-h-screen w-full py-10">
 
@@ -53,7 +53,7 @@ const page = async ({ params }: { params: { id: string } }) => {
                                 </div>
 
                                 <div className="w-full text-gray-300 text-center">
-                                    <AnimatedGradientText className="bg-transparent rounded-none">
+                                    <AnimatedGradientText className="bg-transparent rounded-none flex flex-col">
                                         <h2
                                             className={cn(
                                                 `md:text-4xl text-3xl font-bold text-white inline animate-gradient bg-gradient-to-r from-[#2196F3] via-[#673AB7] to-[#007BFF] bg-[length:var(--bg-size)_100%] bg-clip-text text-transparent`,
@@ -62,24 +62,21 @@ const page = async ({ params }: { params: { id: string } }) => {
                                             Congratulations! You're on Our waitlist
                                         </h2>
                                     </AnimatedGradientText>
-                                    <p className='text-sm md:text-lg font-semibold lg:w-2/3 mx-auto'>
-                                        You have been awarded 5,000 $TOL. Complete simple tasks and ascend the leaderboards all point will be displayed on our upcoming P2E Game
+                                    <p className='text-sm md:text-lg font-semibold lg:w-2/3 mx-auto mt-5'>
+                                        You have been awarded 5,000 $TOL. Keep your fingers crossed and anticipate our P2E game as well as the launch of our NFT project
                                     </p>
                                 </div>
 
                                 <div className="w-full lg:w-2/3 px-4 z-50 text-gray-200">
                                     <ScoreBalance id={params.id} />
 
-                                    <div className='w-full flex gap-5 flex-col mt-10 px-5'>
+                                    {/* <div className='w-full flex gap-5 flex-col mt-10 px-5'>
                                         <AllTasks />
-                                        {/* {filteredTasks?.length > 0 && filteredTasks.map((task, id) =>
-                                            <WLTasks id={task.id} name={task.name} description={task.description} reward={task.reward} key={id} />
-                                        )} */}
                                     </div>
 
                                     <div className='mt-10 text-center text-sm underline decoration-dotted hover:text-sky-400 transition duration-100'>
                                         <Link href="/leaderboard" className='font-bold text-sky-500'>See leaderboard</Link>
-                                    </div>
+                                    </div> */}
                                 </div>
                             </ShineBorder>
                         </div>
