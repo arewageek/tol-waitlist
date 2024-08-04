@@ -15,11 +15,13 @@ type Status = {
 const WaitlistForm2 = ({ tgId }: { tgId?: string }) => {
     const [email, setEmail] = useState<string>('')
     const [status, setStatus] = useState<Status | undefined>()
+    const [isLoading, setIsLoading] = useState<boolean>(false)
 
     // const { tgId } = useUserStore()
 
     const handleSubmit = (e: SyntheticEvent) => {
         e.preventDefault()
+        setIsLoading(true)
 
         try {
             const joinWL = async () => {
@@ -54,6 +56,9 @@ const WaitlistForm2 = ({ tgId }: { tgId?: string }) => {
                 else {
                     toast.error("An unknown error occurred")
                 }
+
+
+                setTimeout(() => setIsLoading(false), 2000)
             }
             joinWL()
 
@@ -61,6 +66,7 @@ const WaitlistForm2 = ({ tgId }: { tgId?: string }) => {
         catch (error) {
             console.log(error)
             toast.error("An error occurred")
+            setTimeout(() => setIsLoading(false), 2000)
         }
     }
 
@@ -72,8 +78,13 @@ const WaitlistForm2 = ({ tgId }: { tgId?: string }) => {
                 </div>
 
                 <div className="w-full px-5">
-                    <Button className="w-full h-[60pt] rounded-3xl font-bold text-2xl text-black bg-white shadow transition hover:shadow-sm hover:text-black/80 duration-100">
-                        Join Waitlist
+                    <Button className="w-full h-[60pt] rounded-3xl font-bold text-2xl text-black bg-white shadow transition hover:shadow-sm hover:text-black/80 duration-100 flex items-center gap-x-3">
+                        <span>
+                            Join Waitlist
+                        </span>
+                        <span>
+                            {isLoading && <div className='w-5 h-5 rounded-full border-2 border-black border-t-0 animate-spin border-l-0'></div>}
+                        </span>
                     </Button>
                 </div>
             </form>

@@ -13,6 +13,7 @@ import ScoreBalance from '@/components/tasks/ScoreBalance'
 import AppProvider from '@/providers/AppProvider'
 import UpdateId from '@/components/UpdateId'
 import AllTasks from '@/components/tasks/AllTasks'
+import Image from 'next/image'
 
 const page = async ({ params }: { params: { id: string } }) => {
     // const tasks: (typeof Task)[] | "unknownError" = await allTasks()
@@ -44,11 +45,12 @@ const page = async ({ params }: { params: { id: string } }) => {
                                 color={["#66B2FF", "#3366CC", "#00188F"]}
                             >
                                 <div className='my-10 flex items-center flex-col gap-3'>
-                                    <div className="rounded-full p-3 bg-[#181818] text-gray-300 cursorpoin">
-                                        <Zap height={30} width={30} />
+                                    <div className="rounded-full p-0 text-gray-300 cursorpoin overflow-hidden bg-[#42a6f8]">
+                                        {/* <Zap height={30} width={30} /> */}
+                                        <Image src="/logo.jpeg" height={50} width={50} alt="" className='h-full w-full rounded-full' />
                                     </div>
                                     <p className="text-sm font-semibold text-white/70">
-                                        The Open Lab
+                                        The Open Labs
                                     </p>
                                 </div>
 

@@ -1,6 +1,7 @@
 "use client"
 
 import WaitlistForm2 from '@/components/forms/WaitlistForm2'
+import Image from 'next/image'
 import React from 'react'
 
 const JoinPage2 = ({ params }: { params: { id: string } }) => {
@@ -21,7 +22,7 @@ const JoinPage2 = ({ params }: { params: { id: string } }) => {
                     </div>
 
                     <div>
-                        <img src={"/phone.png"} alt="" className="w-[500pt] lg:w-[300pt]" />
+                        <Image src={"/logo.jpeg"} height={1000} width={1000} alt="" className="w-[250pt] lg:w-[250pt] rounded-4xl shadow-xl mt-10" />
                     </div>
                 </div>
             </div>
