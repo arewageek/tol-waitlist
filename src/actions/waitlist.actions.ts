@@ -73,7 +73,7 @@ export async function joinWaitlistWithEmail({
   telegramId,
 }: {
   email: string;
-  telegramId?: number;
+  telegramId?: string;
 }): Promise<{
   status: "success" | "unknownError" | "alreadyOnWaitlist";
   id: string | undefined;
