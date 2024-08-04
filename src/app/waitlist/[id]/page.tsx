@@ -65,7 +65,7 @@ const page = async ({ params }: { params: { id: string } }) => {
                                         </h2>
                                     </AnimatedGradientText>
                                     <p className='text-sm md:text-lg font-semibold lg:w-2/3 mx-auto mt-5'>
-                                        You have been awarded 5,000 $TOL. Keep your fingers crossed and anticipate our P2E game as well as the launch of our NFT project
+                                        You have been awarded 5,000 $TOL. Keep your fingers crossed and anticipate our P2E game.
                                     </p>
                                 </div>
 
