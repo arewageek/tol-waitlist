@@ -12,7 +12,7 @@ type Status = {
     title: string, content: string, type: "success" | "error" | "alreadyOnWaitlist", id?: string
 }
 
-const WaitlistForm2 = ({ tgId }: { tgId?: string }) => {
+const WaitlistForm2 = ({ tgId }: { tgId?: number }) => {
     const [email, setEmail] = useState<string>('')
     const [status, setStatus] = useState<Status | undefined>()
 
@@ -42,8 +42,6 @@ const WaitlistForm2 = ({ tgId }: { tgId?: string }) => {
                     }))
                 }
                 else if (joinWaitlist.status == "success") {
-                    // toast.success("You have successfully joined our waitlist")
-                    // window.location.href = `/waitlist/${joinWaitlist.id}`
                     console.log(joinWaitlist)
 
                     setStatus(() => ({

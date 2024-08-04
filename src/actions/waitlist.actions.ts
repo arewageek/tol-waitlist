@@ -3,6 +3,7 @@
 import { connectMongoDB } from "@/lib/db";
 import Waitlist from "@/models/waitlist";
 import mongoose from "mongoose";
+import {Bot} from 'grammy'
 
 export type Account = {
   name: string;
@@ -72,7 +73,7 @@ export async function joinWaitlistWithEmail({
   telegramId,
 }: {
   email: string;
-  telegramId?: string;
+  telegramId?: number;
 }): Promise<{
   status: "success" | "unknownError" | "alreadyOnWaitlist";
   id: string | undefined;
@@ -94,6 +95,7 @@ export async function joinWaitlistWithEmail({
 
     const waitlist = new Waitlist({
       email,
+      tgId: telegramId? telegramId : 0,
       referredBy: "admin",
       referralCode: crypto.randomUUID(),
       score: 5000,
@@ -101,9 +103,16 @@ export async function joinWaitlistWithEmail({
 
     const waitlistId = await waitlist.save();
 
+    const bot = new Bot(process.env.TELEGRAM_BOT_API!)
+
+    if(telegramId) bot.api.sendPhoto(telegramId, "https://lh3.googleusercontent.com/proxy/PAp2VcqRN8Xx43Lwc5g3Sl2De92ZJk7XN_BFQitYH-0AcIUWYA29pBziLRjGBRsvnWJ6A5uPU-Vv5Ur11mh66moJaO2UNy5Y-2RZqAqO6HY", {
+      caption: "Hey! you've been added to our waitlist. It's great to have you onboard \n\nAs a way of appreciating you for being early, we have rewarded you with 5,000$TOL. This will be made claimable at TGE. \n\nThere's a lot more coming than you would expect. \n\nCheers!"
+    })
+
     const id = await waitlistId._id.toLocaleString();
 
     console.log(waitlistId);
+    
     return { id, status: "success" };
   } catch (error) {
     console.log(error);
